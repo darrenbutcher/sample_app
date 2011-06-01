@@ -17,6 +17,11 @@ module SessionsHelper
     @current_user ||= user_from_remember_token #or= if nil assign user_from_remember_token (dont hit database)
   end
 
+  def sign_out
+    cookies.delete(:remember_token)
+    current_user = nil
+  end
+
   private
 
   def user_from_remember_token
